@@ -1,51 +1,49 @@
-print('Sezar Şifreleme / Çözme Programı')
+print('Caesar Cipher / Decryption Program')
 
 while True:
-    print('\n1. Şifreleme')
-    print('2. Çözme')
-    print('3. Çıkış')
+    print('\n1. Encrypt')
+    print('2. Decrypt')
+    print('3. Exit')
 
-    secim = input('Bir seçenek giriniz: (1-2-3) ')
+    choice = input('Enter your choice: (1-2-3) ')
 
-    if secim == '1':
-        metin = input('Şifrelenecek metni giriniz: ')
-        kaydirma = int(input('Kaydırma miktarını giriniz: '))
+    if choice == '1':
+        text = input('Enter the text to encrypt: ')
+        shift = int(input('Enter the shift amount: '))
 
-        sifreliMetin = ""
+        encrypted_text = ""
 
-        for karakter in metin:
-            if karakter.isalpha():
-                kaydirmaEgik = kaydirma % 26
-                base = ord('a') if karakter.islower() else ord('A')
-                sifreliKarakter = chr((ord(karakter) - base + kaydirmaEgik) % 26 + base)
-                sifreliMetin += sifreliKarakter
+        for char in text:
+            if char.isalpha():
+                shifted = shift % 26
+                base = ord('a') if char.islower() else ord('A')
+                encrypted_char = chr((ord(char) - base + shifted) % 26 + base)
+                encrypted_text += encrypted_char
             else:
-                sifreliMetin += karakter
+                encrypted_text += char
 
-        print(f"Şifreli metin: {sifreliMetin}")
+        print(f"Encrypted text: {encrypted_text}")
 
-    elif secim == '2':
-        metin = input('Çözülecek metni giriniz: ')
-        kaydirma = int(input('Kaydırma miktarını giriniz: '))
+    elif choice == '2':
+        text = input('Enter the text to decrypt: ')
+        shift = int(input('Enter the shift amount: '))
 
-        cozulmusMetin = ""
+        decrypted_text = ""
 
-        for karakter in metin:
-            if karakter.isalpha():
-                kaydirmaEgik = -kaydirma % 26
-                base = ord('a') if karakter.islower() else ord('A')
-                cozulmusKarakter = chr((ord(karakter) - base + kaydirmaEgik) % 26 + base)
-                cozulmusMetin += cozulmusKarakter
+        for char in text:
+            if char.isalpha():
+                shifted = -shift % 26
+                base = ord('a') if char.islower() else ord('A')
+                decrypted_char = chr((ord(char) - base + shifted) % 26 + base)
+                decrypted_text += decrypted_char
             else:
-                cozulmusMetin += karakter
+                decrypted_text += char
 
-        print(f"Çözülmüş metin: {cozulmusMetin}")
+        print(f"Decrypted text: {decrypted_text}")
 
-    elif secim == '3':
-        print("Çıkış yapılıyor...")
+    elif choice == '3':
+        print("Exiting...")
         break
     else:
-        print("Geçersiz giriş, lütfen 1, 2 veya 3 giriniz.")
-
+        print("Invalid input, please enter 1, 2, or 3.")
         break
-    
